@@ -9,10 +9,10 @@ router.get("/:pokemonName", async (req, res) => {
         .then(response => {
             const name = ('name' in response.data) ? response.data.name : "undefined";
             const description = ('flavor_text_entries' in response.data) ? response.data.flavor_text_entries[0].flavor_text : "undefined";
-            const habitat = ('habitat.name' in response.data) ? response.data.habitat.name : "undefined"
-            const isLegendary = ('is_legendary' in response.data) ? response.data.is_legendary : "undefined"
+            const habitat = ('habitat.name' in response.data) ? response.data.habitat.name : "undefined";
+            const isLegendary = ('is_legendary' in response.data) ? response.data.is_legendary : "undefined";
 
-            return res.status(200).json({
+            res.status(200).json({
                 name: name,
                 description: description,
                 habitat: habitat,
@@ -22,7 +22,6 @@ router.get("/:pokemonName", async (req, res) => {
         .catch(error => {
             if (error.response || error.request) {
                 // Simplistic error returning - verbosity depends on where this API will be used
-                console.log("Error: ", error);
                 res.status(error.response.status).json({
                     message: `Error: ${error.response.statusText}`
                 });
@@ -46,6 +45,6 @@ router.get("/translated/:pokemonName", async (req, res) => {
         habitat: "rare",
         isLegendary: true
     });
-})
+});
 
 module.exports = router; // Enable exporting of routes
