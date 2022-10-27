@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const router = express();
+const { logger } = require('../../logs.js');
 const FormData = require('form-data');
 
 
@@ -70,7 +71,10 @@ router.get("/translated/:pokemonName", async (req, res) => {
                 }
             }
             catch(error) {
-                console.error("Translate Error: ", ('response' in error) ? error.response.statusText : error);
+                logger.log({
+                    level: 'warn',
+                    message: `Translate Error: ${('response' in error) ? error.response.statusText : error}`
+                });
             }
             finally {
                 res.status(200).json({
