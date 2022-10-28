@@ -17,7 +17,7 @@ $ node server.js
 ```console
 $ docker build --tag pokemon-api .
 ```
-6. Then run this iamge as a container
+6. Then run this image as a container
 ```console
 $ docker run --publish 5000:5000 pokemon-api
 ```
